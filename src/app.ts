@@ -13,7 +13,7 @@ import { connect, set } from "mongoose";
 import { dbConnection } from "./databases";
 import Routes from "./interfaces/routes.interface";
 import errorMiddleware from "./middlewares/error.middleware";
-import { logger, stream } from "./utils/logger";
+// import { logger, stream } from "./utils/logger";
 import session from "cookie-session";
 import flash  from "express-flash";
 
@@ -35,10 +35,10 @@ class App {
 
     public listen() {
         this.app.listen(this.port, () => {
-            logger.info(`=================================`);
-            logger.info(`======= ENV: ${this.env} =======`);
-            logger.info(`🚀 App listening on the port ${this.port}`);
-            logger.info(`=================================`);
+            console.log(`=================================`);
+            console.log(`======= ENV: ${this.env} =======`);
+            console.log(`🚀 App listening on the port ${this.port}`);
+            console.log(`=================================`);
         });
     }
 
@@ -48,20 +48,20 @@ class App {
 
     private connectToDatabase() {
         if (this.env !== "production") {
-            set("debug", true);
+            // set("debug", true);
         }
         connect(dbConnection.url, dbConnection.options)
         .catch((error) =>
-            logger.info(`${error}`)
+            console.log(`${error}`)
 		);
     }
 
     private initializeMiddlewares() {
 		if (this.env === "production") {
-			this.app.use(morgan("combined", { stream }));
+			this.app.use(morgan("combined", ));
 			this.app.use(cors({ origin: "yoursite.com", credentials: true }));
 		} else {
-			this.app.use(morgan("dev", { stream }));
+			this.app.use(morgan("dev", ));
 			this.app.use(cors({ origin: true, credentials: true }));
 		}
         this.app.use(hpp());
