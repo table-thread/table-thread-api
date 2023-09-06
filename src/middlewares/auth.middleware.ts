@@ -1,10 +1,10 @@
 import config from "config";
 import { NextFunction, Response } from "express";
 import jwt from "jsonwebtoken";
-import HttpException from "exceptions/HttpException";
-import { DataStoredInToken, RequestWithUser } from "interfaces/auth.interface";
+import HttpException from "../exceptions/HttpException";
+import { DataStoredInToken, RequestWithUser } from "../interfaces/auth.interface";
 // import userModel from "@models/users.model";
-import MSG from "utils/locale.en.json";
+import MSG from "../utils/locale.en.json";
 
 const authMiddleware = async (
 	req: RequestWithUser,
