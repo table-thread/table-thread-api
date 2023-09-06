@@ -1,0 +1,92 @@
+<%- include('../../includes/header',{loginUser}); %>
+
+<div class="row" id="basic-table">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-header">
+				<h4 class="card-title">All Trainers</h4>
+			</div>
+			<div class="table-responsive">
+				<table class="table table-hover-animation">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Approval</th>
+							<th>Mobile</th>
+							<th>Rate(Hr.)</th>
+							<th>Experience(Yrs.)</th>
+							<th>Status</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% if(trainers && trainers.length == 0){ %>
+						<tr>
+							
+							<td class="text-center" colspan="8">
+								No trainers available !!!
+							</td>
+						</tr>
+						<% } else { %> <% trainers.forEach(function(trainer){ %>
+						<tr class="">
+							<td>
+								<% if(trainer.isFeatured) { %> 
+                                    <i data-feather='star' class="text-warning"></i>
+                                <% } %>
+								<span class="font-weight-bold">
+                                    <%= trainer.name %>
+                                </span>
+							</td>
+							<td>
+								<%-
+								include('../../components/approval',{status:trainer.profileApproval.status});
+								%>
+							</td>
+							<td><%= trainer.mobile %></td>
+							<td><%= trainer.hourlyRate %></td>
+							<td><%= trainer.experienceYear %></td>
+							<td>
+								<%-
+								include('../../components/status',{status:trainer.status});
+								%>
+							</td>
+							<td>
+								<div
+									class=" d-flex align-items-center col-actions"
+								>
+									<a
+										class="mr-1"
+										href="/admin/trainers/edit/<%= trainer._id %>"
+										data-toggle="tooltip"
+										data-placement="top" 
+										title="edit"
+										data-original-title="edit"
+									>
+										<i data-feather="edit"></i>
+									</a>
+									<a
+										class="mr-1"
+										href="/admin/trainer/view/<%= trainer._id %>"
+										data-toggle="tooltip"
+										data-placement="top" 
+										title="edit"
+										data-original-title="edit"
+									>
+										<i data-feather='eye'></i>
+									</a>
+									<!-- <a class="mr-1" href="/admin/trainers/view/<%= trainer._id %>" data-toggle="tooltip" data-placement="top" title="view" data-original-title="view">
+                                               <i data-feather='eye'></i>
+                                            </a> -->
+								</div>
+							</td>
+						</tr>
+						<% }) %> <% } %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<input type="hidden" id="activeSideBar" value="trainers" />
+<%- include('../../includes/footer',{loginUser}); %>

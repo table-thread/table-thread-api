@@ -1,0 +1,78 @@
+<%- include('../../includes/header',{loginUser}); %>
+
+<section class="app-user-edit">
+	<div class="card">
+		<div class="card-body">
+			<form
+				class="form-validate"
+				method="POST"
+				novalidate="novalidate"
+				action="/admin/category/add"
+			>
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group">
+							<label for="name">Name</label>
+							<input
+								type="text"
+								class="form-control"
+								placeholder="Name"
+								value=""
+								name="name"
+								id="name"
+							/>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group">
+							<label for="mobile">Category</label>
+							<!-- <input
+								type="mobile"
+								class="form-control"
+								placeholder="Mobile"
+								value=""
+								name="mobile"
+								id="mobile"
+							/> -->
+							<select class="form-control" name="category">
+								<option value="<%= role %>" style="text-transform: capitalize"><%= role %></option>
+								<!-- <option value="user">User</option> -->
+							</select>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<!-- <div class="form-group">
+							<label for="email">Background Image</label>
+							<input
+								type="file"
+								class="form-control file-upload"
+								placeholder="Email"
+								value=""
+								name="bgImage"
+								id="image"
+							/>
+							<input type="hidden" value="" id="bgImage" />
+						</div> -->
+					</div>
+
+					<div class="mt-2 col-12 d-flex flex-sm-row flex-column">
+						<button
+							type="submit"
+							class="mb-1 mr-0 btn btn-primary mb-sm-0 mr-sm-1 waves-effect waves-float waves-light"
+						>
+							Save Changes
+						</button>
+						<a
+							class="btn btn-outline-secondary waves-effect"
+							href="/admin/users"
+							>Cancle</a
+						>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>
+
+<input type="hidden" id="activeSideBar" value="<%= role%>-categories" />
+<%- include('../../includes/footer',{loginUser}); %>

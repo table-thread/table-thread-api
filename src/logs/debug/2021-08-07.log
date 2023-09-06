@@ -1,0 +1,57 @@
+2021-08-07 00:10:39 info: [0mGET /admin [32m200[0m 1298.174 ms - -[0m
+2021-08-07 00:10:43 info: =================================
+2021-08-07 00:10:43 info: ======= ENV: development =======
+2021-08-07 00:10:43 info: 🚀 App listening on the port 5000
+2021-08-07 00:10:43 info: =================================
+2021-08-07 00:10:45 info: [0mGET /app-file-manager.html [33m404[0m 6.638 ms - 160[0m
+2021-08-07 00:10:49 info: [0mGET /app-file-manager.html [33m404[0m 7.107 ms - 160[0m
+2021-08-07 00:10:56 info: [0mGET /admin [36m304[0m 1439.678 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/vendors/css/vendors.min.css [36m304[0m 5.122 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/vendors/css/pickers/flatpickr/flatpickr.min.css [36m304[0m 6.116 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/vendors/css/extensions/toastr.min.css [36m304[0m 6.493 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/vendors/css/forms/select/select2.min.css [36m304[0m 6.571 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/css/bootstrap.css [36m304[0m 6.635 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/css/bootstrap-extended.css [36m304[0m 6.972 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/css/colors.css [36m304[0m 1.275 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/css/components.css [36m304[0m 1.466 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/css/themes/dark-layout.css [36m304[0m 2.197 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/css/themes/bordered-layout.css [36m304[0m 2.565 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/css/themes/semi-dark-layout.css [36m304[0m 13.061 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/css/core/menu/menu-types/vertical-menu.css [36m304[0m 3.807 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/css/plugins/extensions/ext-component-toastr.css [36m304[0m 3.236 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/css/plugins/forms/form-validation.css [36m304[0m 4.775 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /assets/css/style.css [36m304[0m 4.892 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/css/pages/page-auth.css [36m304[0m 1.458 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/vendors/css/editors/quill/katex.min.css [36m304[0m 1.288 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/vendors/css/editors/quill/monokai-sublime.min.css [36m304[0m 1.513 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/vendors/css/editors/quill/quill.snow.css [36m304[0m 1.415 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/vendors/css/editors/quill/quill.bubble.css [36m304[0m 2.919 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/css/plugins/forms/form-quill-editor.css [36m304[0m 0.637 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/vendors/js/vendors.min.js [36m304[0m 0.675 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/vendors/js/forms/validation/jquery.validate.min.js [36m304[0m 1.122 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/vendors/js/pickers/flatpickr/flatpickr.min.js [36m304[0m 1.776 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/vendors/js/extensions/toastr.min.js [36m304[0m 2.148 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/js/core/app-menu.js [36m304[0m 1.470 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/js/core/app.js [36m304[0m 1.664 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /assets/js/blockUI.js [36m304[0m 1.227 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /assets/js/scripts.js [36m304[0m 2.045 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/js/scripts/pages/page-auth-login.js [36m304[0m 0.923 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/vendors/js/editors/quill/katex.min.js [36m304[0m 1.417 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/vendors/js/editors/quill/highlight.min.js [36m304[0m 2.324 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/vendors/js/editors/quill/quill.min.js [36m304[0m 2.874 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/js/scripts/forms/form-quill-editor.js [36m304[0m 2.296 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/images/icons/xls.png [36m304[0m 1.365 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/images/icons/jpg.png [36m304[0m 2.398 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/images/icons/pdf.png [36m304[0m 0.578 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/images/icons/doc.png [36m304[0m 0.935 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/images/portrait/small/avatar-s-8.jpg [36m304[0m 0.860 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/images/portrait/small/avatar-s-1.jpg [36m304[0m 1.597 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/images/portrait/small/avatar-s-14.jpg [36m304[0m 1.519 ms - -[0m
+2021-08-07 00:10:56 info: [0mGET /app-assets/images/portrait/small/avatar-s-6.jpg [36m304[0m 1.740 ms - -[0m
+2021-08-07 00:10:57 info: [0mGET /app-assets/data/locales/en.json [36m304[0m 0.579 ms - -[0m
+2021-08-07 00:10:57 info: [0mGET /app-assets/images/default.png [36m304[0m 2.286 ms - -[0m
+2021-08-07 00:11:34 info: =================================
+2021-08-07 23:13:02 info: =================================
+2021-08-07 23:13:02 info: ======= ENV: development =======
+2021-08-07 23:13:02 info: 🚀 App listening on the port 5000
+2021-08-07 23:13:02 info: =================================

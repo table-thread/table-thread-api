@@ -1,0 +1,199 @@
+<%- include('../../includes/header',{loginUser}); %>
+<!-- <div class="row" id="basic-table">
+	<dic class="col-12">
+		<div class="card">
+			<div
+				class="mt-1 mb-1 col-12 d-flex flex-sm-row flex-column"
+				style="justify-content: flex-end"
+			>
+				<a href="/admin/queries/add"> -->
+				<!-- <button
+					type="submit"
+					class="mb-1 mr-0 btn btn-primary mb-sm-0 mr-sm-1 waves-effect waves-float waves-light"
+				>
+					Add Goals
+				</button> -->
+				<!-- </a>
+			</div>
+		</div>
+	</dic>
+</div> -->
+<div class="row" id="basic-table">
+	<div class="col-12">
+		<div class="card">
+			<div class="card-header">
+				<h4 class="card-title">Queries</h4>
+			</div>
+			<div class="table-responsive">
+				<table class="table table-hover-animation">
+					<thead>
+						<tr>
+							<th>User</th>
+							<th>Query</th>
+							<th>Category</th>
+							<th>Date</th>
+							<th>Status</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% if(queries && queries.length == 0){ %>
+						<tr>
+							<td class="text-center" colspan="8">
+								No trainers available !!!
+							</td>
+						</tr>
+						<% } else { %> <% queries.forEach(function(query){ %>
+						<tr>
+							<td>
+								<a href="/admin/<%= query.user[0].role %>s/edit/<%= query.user[0]._id %>"> 
+								<span class="font-weight-bold"
+									><%= query.user[0].name %></span
+								></a>
+							</td>
+							<td>
+								<a href="/admin/category/edit/<%= query.category[0]._id %>">
+								<span class="font-weight-bold"
+									><%= query.category[0].name %></span
+								>
+								</a>
+							</td>
+							<td>
+								<span class="font-weight-bold"
+									><%= query.date %></span
+								>
+							</td>
+							<td>
+								<span class="font-weight-bold">
+									<%= query.query.substring(0, 50) %>...
+								</span
+								>
+							</td>
+
+							<td>
+								<!-- <%-
+								include('../../components/status',{status:query.status});
+								%> -->
+								<span
+									class="
+										badge badge-pill badge-light-<%=
+										query.status
+										==
+										'open'
+										?
+										'success'
+										:
+										'danger'
+										%>
+										mr-1
+									"
+								>
+									<%= query.status %>
+								</span>
+							</td>
+							<td>
+								<div
+									class=" d-flex align-items-center col-actions"
+								>
+									
+
+									<% if(query.editable){ %>
+									<p><%= query.reply %></p>
+									<% } else { %>
+
+									<div
+										class=" d-flex align-items-center col-actions"
+									>
+										<a
+											class="mr-1"
+											href="/admin/queries/view/<%= query._id %>"
+											data-toggle="tooltip"
+											data-placement="top"
+											title="view"
+											data-original-title="edit"
+										>
+											<!-- <i data-feather="edit"></i> -->
+											<i data-feather="eye"></i>
+										</a>
+										<a
+											class="mr-1"
+											data-toggle="tooltip"
+											data-placement="top"
+											title="Reply"
+											data-original-title="reply"
+										>
+											<i
+												data-feather="corner-up-right"
+												data-toggle="modal"
+												data-target="#animation"
+												onclick="setIdForReply('<%= query._id %>')"
+											></i>
+										</a>
+									</div>
+
+									<!-- <button
+										type="button"
+										class="btn btn-outline-primary"
+										data-toggle="modal"
+										data-target="#animation"
+										onclick="setIdForReply('<%= query._id %>')"
+									>
+										Reply
+									</button> -->
+
+									<% } %>
+								</div>
+							</td>
+						</tr>
+						<% }) %> <% } %>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div
+	class="text-left modal"
+	id="animation"
+	tabindex="-1"
+	role="dialog"
+	aria-labelledby="myModalLabel6"
+	aria-hidden="true"
+>
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title" id="myModalLabel6">Reply</h4>
+				<button
+					type="button"
+					class="close"
+					data-dismiss="modal"
+					aria-label="Close"
+				>
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<form
+				class="form-validate"
+				method="GET"
+				id="form_test"
+				novalidate="novalidate"
+				action="/admin/queries/edit"
+			>
+				<div class="modal-body">
+					<textarea class="form-control" name="reply"></textarea>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary">
+						Submit
+					</button>
+				</div>
+				<!-- <input type="text" id="queryId" value="" name="_id" /> -->
+			</form>
+		</div>
+	</div>
+</div>
+
+<input type="hidden" id="activeSideBar" value="queries" />
+<%- include('../../includes/footer',{loginUser}); %>

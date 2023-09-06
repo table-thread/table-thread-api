@@ -1,0 +1,3 @@
+<span class="badge badge-pill badge-light-<%= status == 'pending' ? 'primary' : status == 'rejected' ? 'danger' : 'success'  %> mr-1">
+    <%= status == 'pending' ? 'Pending' : status == 'rejected' ? 'Rejected' : 'Approved'  %>
+</span>

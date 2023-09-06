@@ -1,0 +1,136 @@
+<%- include('../../includes/header',{loginUser}); %>
+
+<section class="snow-editor">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Create or Edit Email</h4>
+                </div>
+                <div class="card-body">
+                    <!-- <p class="card-text">Snow is a clean, flat toolbar theme.</p> -->
+                    <div class="row">
+                        <div class="col-sm-12">
+                           <form
+                                class="form-validate"
+                                method="POST"
+                                novalidate="novalidate"
+                                action="/admin/emails/<% if(email) { %>edit/<%= email._id %> <% } else { %>add<% } %>"
+                            >
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="name">Title</label>
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            placeholder="Name"
+                                            value="<% if(email) { %> <%= email.title %> <% } %>"
+                                            name="title"
+                                            id="name"
+                                        />
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="birth">Date</label>
+                                        <% if(email) { %> 
+                                           <%- 
+                                                include('../../components/date',{date:email.date,name:"date"});
+                                            %>
+                                        <% } else { %> 
+                                            <%- 
+                                                include('../../components/date',{date:'2021-01-01',name:"date"});
+                                            %>
+                                        <% } %>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+                            <div id="snow-wrapper">
+                                <div id="snow-container">
+                                    <div class="quill-toolbar">
+                                        <span class="ql-formats">
+                                            <select class="ql-header">
+                                                <option value="1">Heading</option>
+                                                <option value="2">Subheading</option>
+                                                <option selected>Normal</option>
+                                            </select>
+                                            <select class="ql-font">
+                                                <option selected>Sailec Light</option>
+                                                <option value="sofia">Sofia Pro</option>
+                                                <option value="slabo">Slabo 27px</option>
+                                                <option value="roboto">Roboto Slab</option>
+                                                <option value="inconsolata">Inconsolata</option>
+                                                <option value="ubuntu">Ubuntu Mono</option>
+                                            </select>
+                                        </span>
+                                        <span class="ql-formats">
+                                            <button class="ql-bold"></button>
+                                            <button class="ql-italic"></button>
+                                            <button class="ql-underline"></button>
+                                        </span>
+                                        <span class="ql-formats">
+                                            <button class="ql-list" value="ordered"></button>
+                                            <button class="ql-list" value="bullet"></button>
+                                        </span>
+                                        <span class="ql-formats">
+                                            <button class="ql-link"></button>
+                                            <button class="ql-image"></button>
+                                            <button class="ql-video"></button>
+                                        </span>
+                                        <span class="ql-formats">
+                                            <button class="ql-formula"></button>
+                                            <button class="ql-code-block"></button>
+                                        </span>
+                                        <span class="ql-formats">
+                                            <button class="ql-clean"></button>
+                                        </span>
+                                    </div>
+                                    
+                                    <div class="editor">
+                                        <% if(email) { %> 
+                                           <%= email.content %>
+                                        <% } else { %> 
+                                            
+                                        <% } %>
+
+                                        
+                                    </div>
+                                    <br>
+                                    <input 
+                                        type="submit" 
+                                        class="mb-1 mr-0 btn btn-primary mb-sm-0 mr-sm-1 waves-effect waves-float waves-light"
+                                        onclick="return quillContents()" />
+                                </div>
+                            </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<input type="hidden" id="activeSideBar" value="emails" />
+<%- include('../../includes/footer',{loginUser}); %>
+ <script>
+     const quill = new Quill('#editor', {
+         theme: 'snow'
+     })
+
+     const quillContents = () => {
+         const form = document.forms[0]
+         const editor = document.createElement('input')
+
+         editor.type = 'hidden'
+         editor.name = 'article[content]'
+         editor.value = document.querySelector('.ql-editor').innerHTML
+         form.appendChild(editor)
+
+         return form.submit()
+     }
+</script>

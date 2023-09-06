@@ -1,0 +1,46 @@
+{
+    "env": "production",
+    "siteTitle": "Table Thread",
+    "siteUrl": "http://127.0.0.1:5000",
+    "dbConfig": {
+        "host": "",
+        "database": "",
+        "port": 0,
+        "username":"",
+        "password":""
+    },
+    "secretKey": "jF3HbDUuYfxfUjeDJRVg",
+    "recordLimit" : 10,
+    "awsS3": {
+        "prefix":"production/",
+        "accessKeyId": "",
+        "secretAccessKey": "",
+        "bucketName": "",
+        "bucketRegion":"",
+        "secretEntPoint":"",
+        "url":""
+    },
+    "mail": {
+        "from":"",
+        "host": "",
+        "port": 465,
+        "user": "apikey",
+        "pass":""
+    },
+    "twilio":{
+        "sid":"",
+        "secret":"",
+        "phoneNumber":"",
+        "phoneSid":""
+    },
+    "stripe":{
+        "publishableKey":"",
+        "secretKey":""
+    },
+    "admin":{
+        "name":"Vaseem",
+        "mobile":"",
+        "email":"vasimkhan658@gmail.com",
+        "password":"123456"
+    }
+}

@@ -1,0 +1,122 @@
+2023-09-05 18:36:54 error: uncaughtException: Cannot find module '@models/users.model'
+Require stack:
+- /mnt/62A4C6B9A4C68ECB/projects/tableThread/src/middlewares/auth.middleware.ts
+- /mnt/62A4C6B9A4C68ECB/projects/tableThread/src/routes/auth.route.ts
+- /mnt/62A4C6B9A4C68ECB/projects/tableThread/src/server.ts
+Error: Cannot find module '@models/users.model'
+Require stack:
+- /mnt/62A4C6B9A4C68ECB/projects/tableThread/src/middlewares/auth.middleware.ts
+- /mnt/62A4C6B9A4C68ECB/projects/tableThread/src/routes/auth.route.ts
+- /mnt/62A4C6B9A4C68ECB/projects/tableThread/src/server.ts
+    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:1039:15)
+    at Function.Module._resolveFilename (/mnt/62A4C6B9A4C68ECB/projects/tableThread/node_modules/tsconfig-paths/lib/register.js:75:40)
+    at Function.Module._load (node:internal/modules/cjs/loader:885:27)
+    at Module.require (node:internal/modules/cjs/loader:1105:19)
+    at require (node:internal/modules/cjs/helpers:103:18)
+    at Object.<anonymous> (/mnt/62A4C6B9A4C68ECB/projects/tableThread/src/middlewares/auth.middleware.ts:6:1)
+    at Module._compile (node:internal/modules/cjs/loader:1218:14)
+    at Module.m._compile (/mnt/62A4C6B9A4C68ECB/projects/tableThread/node_modules/ts-node/src/index.ts:1225:23)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1272:10)
+    at Object.require.extensions.<computed> [as .ts] (/mnt/62A4C6B9A4C68ECB/projects/tableThread/node_modules/ts-node/src/index.ts:1228:12)
+    at Module.load (node:internal/modules/cjs/loader:1081:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:922:12)
+    at Module.require (node:internal/modules/cjs/loader:1105:19)
+    at require (node:internal/modules/cjs/helpers:103:18)
+    at Object.<anonymous> (/mnt/62A4C6B9A4C68ECB/projects/tableThread/src/routes/auth.route.ts:3:1)
+    at Module._compile (node:internal/modules/cjs/loader:1218:14)
+2023-09-05 18:38:04 error: uncaughtException: Cannot find module '@services/users.service'
+Require stack:
+- /mnt/62A4C6B9A4C68ECB/projects/tableThread/src/controllers/otps.controller.ts
+- /mnt/62A4C6B9A4C68ECB/projects/tableThread/src/routes/auth.route.ts
+- /mnt/62A4C6B9A4C68ECB/projects/tableThread/src/server.ts
+Error: Cannot find module '@services/users.service'
+Require stack:
+- /mnt/62A4C6B9A4C68ECB/projects/tableThread/src/controllers/otps.controller.ts
+- /mnt/62A4C6B9A4C68ECB/projects/tableThread/src/routes/auth.route.ts
+- /mnt/62A4C6B9A4C68ECB/projects/tableThread/src/server.ts
+    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:1039:15)
+    at Function.Module._resolveFilename (/mnt/62A4C6B9A4C68ECB/projects/tableThread/node_modules/tsconfig-paths/lib/register.js:75:40)
+    at Function.Module._load (node:internal/modules/cjs/loader:885:27)
+    at Module.require (node:internal/modules/cjs/loader:1105:19)
+    at require (node:internal/modules/cjs/helpers:103:18)
+    at Object.<anonymous> (/mnt/62A4C6B9A4C68ECB/projects/tableThread/src/controllers/otps.controller.ts:7:1)
+    at Module._compile (node:internal/modules/cjs/loader:1218:14)
+    at Module.m._compile (/mnt/62A4C6B9A4C68ECB/projects/tableThread/node_modules/ts-node/src/index.ts:1225:23)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1272:10)
+    at Object.require.extensions.<computed> [as .ts] (/mnt/62A4C6B9A4C68ECB/projects/tableThread/node_modules/ts-node/src/index.ts:1228:12)
+    at Module.load (node:internal/modules/cjs/loader:1081:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:922:12)
+    at Module.require (node:internal/modules/cjs/loader:1105:19)
+    at require (node:internal/modules/cjs/helpers:103:18)
+    at Object.<anonymous> (/mnt/62A4C6B9A4C68ECB/projects/tableThread/src/routes/auth.route.ts:6:1)
+    at Module._compile (node:internal/modules/cjs/loader:1218:14)
+2023-09-05 18:38:10 error: uncaughtException: Cannot find module '@models/users.model'
+Require stack:
+- /mnt/62A4C6B9A4C68ECB/projects/tableThread/src/middlewares/auth.middleware.ts
+- /mnt/62A4C6B9A4C68ECB/projects/tableThread/src/routes/index.route.ts
+- /mnt/62A4C6B9A4C68ECB/projects/tableThread/src/server.ts
+Error: Cannot find module '@models/users.model'
+Require stack:
+- /mnt/62A4C6B9A4C68ECB/projects/tableThread/src/middlewares/auth.middleware.ts
+- /mnt/62A4C6B9A4C68ECB/projects/tableThread/src/routes/index.route.ts
+- /mnt/62A4C6B9A4C68ECB/projects/tableThread/src/server.ts
+    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:1039:15)
+    at Function.Module._resolveFilename (/mnt/62A4C6B9A4C68ECB/projects/tableThread/node_modules/tsconfig-paths/lib/register.js:75:40)
+    at Function.Module._load (node:internal/modules/cjs/loader:885:27)
+    at Module.require (node:internal/modules/cjs/loader:1105:19)
+    at require (node:internal/modules/cjs/helpers:103:18)
+    at Object.<anonymous> (/mnt/62A4C6B9A4C68ECB/projects/tableThread/src/middlewares/auth.middleware.ts:6:1)
+    at Module._compile (node:internal/modules/cjs/loader:1218:14)
+    at Module.m._compile (/mnt/62A4C6B9A4C68ECB/projects/tableThread/node_modules/ts-node/src/index.ts:1225:23)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1272:10)
+    at Object.require.extensions.<computed> [as .ts] (/mnt/62A4C6B9A4C68ECB/projects/tableThread/node_modules/ts-node/src/index.ts:1228:12)
+    at Module.load (node:internal/modules/cjs/loader:1081:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:922:12)
+    at Module.require (node:internal/modules/cjs/loader:1105:19)
+    at require (node:internal/modules/cjs/helpers:103:18)
+    at Object.<anonymous> (/mnt/62A4C6B9A4C68ECB/projects/tableThread/src/routes/index.route.ts:3:1)
+    at Module._compile (node:internal/modules/cjs/loader:1218:14)
+2023-09-05 18:38:42 error: uncaughtException: Cannot find module '@routes/users.route'
+Require stack:
+- /mnt/62A4C6B9A4C68ECB/projects/tableThread/src/server.ts
+Error: Cannot find module '@routes/users.route'
+Require stack:
+- /mnt/62A4C6B9A4C68ECB/projects/tableThread/src/server.ts
+    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:1039:15)
+    at Function.Module._resolveFilename (/mnt/62A4C6B9A4C68ECB/projects/tableThread/node_modules/tsconfig-paths/lib/register.js:75:40)
+    at Function.Module._load (node:internal/modules/cjs/loader:885:27)
+    at Module.require (node:internal/modules/cjs/loader:1105:19)
+    at require (node:internal/modules/cjs/helpers:103:18)
+    at Object.<anonymous> (/mnt/62A4C6B9A4C68ECB/projects/tableThread/src/server.ts:9:1)
+    at Module._compile (node:internal/modules/cjs/loader:1218:14)
+    at Module.m._compile (/mnt/62A4C6B9A4C68ECB/projects/tableThread/node_modules/ts-node/src/index.ts:1225:23)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1272:10)
+    at Object.require.extensions.<computed> [as .ts] (/mnt/62A4C6B9A4C68ECB/projects/tableThread/node_modules/ts-node/src/index.ts:1228:12)
+    at Module.load (node:internal/modules/cjs/loader:1081:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:922:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:82:12)
+    at main (/mnt/62A4C6B9A4C68ECB/projects/tableThread/node_modules/ts-node/src/bin.ts:330:12)
+    at Object.<anonymous> (/mnt/62A4C6B9A4C68ECB/projects/tableThread/node_modules/ts-node/src/bin.ts:477:3)
+    at Module._compile (node:internal/modules/cjs/loader:1218:14)
+2023-09-05 18:39:03 error: uncaughtException: Cannot find module '@routes/users.route'
+Require stack:
+- /mnt/62A4C6B9A4C68ECB/projects/tableThread/src/server.ts
+Error: Cannot find module '@routes/users.route'
+Require stack:
+- /mnt/62A4C6B9A4C68ECB/projects/tableThread/src/server.ts
+    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:1039:15)
+    at Function.Module._resolveFilename (/mnt/62A4C6B9A4C68ECB/projects/tableThread/node_modules/tsconfig-paths/lib/register.js:75:40)
+    at Function.Module._load (node:internal/modules/cjs/loader:885:27)
+    at Module.require (node:internal/modules/cjs/loader:1105:19)
+    at require (node:internal/modules/cjs/helpers:103:18)
+    at Object.<anonymous> (/mnt/62A4C6B9A4C68ECB/projects/tableThread/src/server.ts:9:1)
+    at Module._compile (node:internal/modules/cjs/loader:1218:14)
+    at Module.m._compile (/mnt/62A4C6B9A4C68ECB/projects/tableThread/node_modules/ts-node/src/index.ts:1225:23)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1272:10)
+    at Object.require.extensions.<computed> [as .ts] (/mnt/62A4C6B9A4C68ECB/projects/tableThread/node_modules/ts-node/src/index.ts:1228:12)
+    at Module.load (node:internal/modules/cjs/loader:1081:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:922:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:82:12)
+    at main (/mnt/62A4C6B9A4C68ECB/projects/tableThread/node_modules/ts-node/src/bin.ts:330:12)
+    at Object.<anonymous> (/mnt/62A4C6B9A4C68ECB/projects/tableThread/node_modules/ts-node/src/bin.ts:477:3)
+    at Module._compile (node:internal/modules/cjs/loader:1218:14)

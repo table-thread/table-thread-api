@@ -1,0 +1,14 @@
+{
+    "keep": {
+        "days": false,
+        "amount": 30
+    },
+    "auditLog": "/mnt/62A4C6B9A4C68ECB/projects/tableThread/src/logs/error/.bd5b9baa1380c8af305acc2c80d5ca91b7733bcd-audit.json",
+    "files": [
+        {
+            "date": 1693919214729,
+            "name": "/mnt/62A4C6B9A4C68ECB/projects/tableThread/src/logs/error/2023-09-05.log",
+            "hash": "d2bd4c05c020520556b55e718c5ff3bd"
+        }
+    ]
+}

@@ -1,0 +1,29 @@
+{
+    "keep": {
+        "days": false,
+        "amount": 30
+    },
+    "auditLog": "/mnt/62A4C6B9A4C68ECB/projects/srvitality/src/logs/debug/.9071fedffbca7a8929a54fab07bf5cc8ef415c4a-audit.json",
+    "files": [
+        {
+            "date": 1628274151348,
+            "name": "/mnt/62A4C6B9A4C68ECB/projects/srvitality/src/logs/debug/2021-08-06.log",
+            "hash": "445d126c73346a7b8f7c66ca0bd5b9c0"
+        },
+        {
+            "date": 1628275239386,
+            "name": "/mnt/62A4C6B9A4C68ECB/projects/srvitality/src/logs/debug/2021-08-07.log",
+            "hash": "959295349a000a018ad86b84db49d2bd"
+        },
+        {
+            "date": 1634834658355,
+            "name": "/mnt/62A4C6B9A4C68ECB/projects/srvitality/src/logs/debug/2021-10-21.log",
+            "hash": "863b8d3e2d33fbdce26ff7bc28ba15ae"
+        },
+        {
+            "date": 1668244441296,
+            "name": "/mnt/62A4C6B9A4C68ECB/projects/srvitality/src/logs/debug/2022-11-12.log",
+            "hash": "030b31953bd3cf4f23619082217aa9fb"
+        }
+    ]
+}

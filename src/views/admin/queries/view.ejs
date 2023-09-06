@@ -1,0 +1,95 @@
+<%- include('../../includes/header',{loginUser}); %>
+<div class="col-xl-12 col-lg-12 col-md-12">
+	<div class="card user-card">
+		<div class="card-body">
+			<div class="row">
+				<div
+					class=" col-xl-12 col-lg-12 d-flex flex-column justify-content-between border-container-lg"
+				>
+					<div class="user-avatar-section">
+						<div class="d-flex justify-content-start">
+							<!-- <img
+								class="rounded img-fluid"
+								src="../../../app-assets/images/avatars/7.png"
+								height="104"
+								width="104"
+								alt="User avatar"
+							/> -->
+							<div class="ml-1 d-flex flex-column">
+								<div class="mb-1 user-info">
+									<h4 class="mb-0"><%= query.user[0].name %></h4>
+									<span class="card-text"
+										>Created: <%= query.date %></span
+									>
+									<div class="mt-1 user-info">
+										<span class="card-text"
+											><%= query.query %></span
+										>
+									</div>
+									<div class="mt-1 user-info">
+										<span
+											class="
+												badge badge-pill badge-light-<%=
+												query.status
+												==
+												'open'
+												?
+												'success'
+												:
+												'danger'
+												%>
+												mr-1
+											"
+										>
+											<%= query.status %>
+										</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div
+						class="d-flex align-items-center user-total-numbers"
+					></div>
+				</div>
+				<div class="mt-2 col-xl-6 col-lg-12 mt-xl-0">
+					<form
+						class="form-validate"
+						method="GET"
+						id="form_test"
+						novalidate="novalidate"
+						action="/admin/queries/edit/<%= query._id %>"
+					>
+						<div class="user-info-wrapper">
+							
+							<input
+								type="text"
+								class="form-control"
+								name="reply"
+								placeholder="Write down your reply"
+								value="<%= query.reply %>"
+							/>
+						
+
+							<div
+								class="mt-2 col-12 d-flex flex-sm-row flex-column"
+							>
+								
+								<button
+									type="submit"
+									class=" btn btn-primary waves-effect waves-float waves-light"
+								>
+									Submit
+								</button>
+
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<input type="hidden" id="activeSideBar" value="queries" />
+
+<%- include('../../includes/footer',{loginUser}); %>
