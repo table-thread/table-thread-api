@@ -1,0 +1,1435 @@
+openapi: 3.0.3
+info:
+  title: SR Vitality API
+  description: SR Vitality Rest APIs documentation
+  version: 1.0.0
+servers:
+  - url: 'https://srvitality.com/api'
+    description: Live server
+  - url: 'http://127.0.0.1:5000/api'
+    description: Local Development server
+tags:
+  - name: common
+    description: common API
+  - name: auth
+    description: auth API
+  - name: trainers
+    description: trainers API
+  - name: avaibilities
+    description: avaibilities API
+  - name: users
+    description: users API
+  - name: categories
+    description: categories API
+  - name: goals
+    description: goals API
+  - name: lessons
+    description: lessons API
+  - name: courses
+    description: courses API
+  - name: reviews
+    description: reviews & ratings API
+paths:
+  /:
+    get:
+      summary: Check server up/down status
+      operationId: rootpoint
+      tags:
+        - common
+      responses:
+        '200':
+          description: OK
+        '500':
+          description: Server Error
+  /get-configs/{type}:
+    get:
+      summary: get config values
+      operationId: config
+      tags:
+        - common
+      parameters:
+        - in: path
+          name: type
+          schema:
+            type: string
+            enum:
+              - perPageRecord
+              - s3
+              - stripe
+          required: true
+          description: config type
+      responses:
+        '200':
+          description: OK
+        '500':
+          description: Server Error
+  /auth/generate-otp:
+    post:
+      summary: Generate an OTP
+      operationId: generateOTP
+      tags:
+        - auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - signup
+                - email
+                - mobile
+              properties:
+                signup:
+                  type: boolean
+                  example: false
+                email:
+                  type: string
+                  description: email address
+                  example: raviroshanmehta@gmail.com
+                mobile:
+                  type: string
+                  description: enter mobile number with country code
+                  example: '+919782547643'
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+  /auth/verify-otp:
+    post:
+      summary: Verify OTP
+      operationId: verifyOTP
+      tags:
+        - auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - _id
+                - otp
+              properties:
+                _id:
+                  type: string
+                  description: enter id received during OTP generate
+                otp:
+                  type: number
+                  description: enter 6 digit OTP
+                  example: 123456
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+  /auth/signup:
+    post:
+      summary: Sign UP
+      operationId: signUP
+      tags:
+        - auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - otpId
+                - name
+                - email
+                - mobile
+                - password
+                - role
+              properties:
+                otpId:
+                  type: string
+                  description: enter id received during OTP verification
+                  example: 60bbe89b934d705d19d63449
+                name:
+                  type: string
+                  example: Ravi Roshan
+                email:
+                  type: string
+                  example: raviroshanmehta@gmail.com
+                mobile:
+                  type: string
+                  example: '+919782547643'
+                password:
+                  type: string
+                  example: '123456'
+                role:
+                  type: string
+                  example: trainer
+                profileImage:
+                  type: string
+                  example: default.png
+                bgImage:
+                  type: string
+                  example: default.png
+                address:
+                  type: string
+                  example: Jaipur, Rajasthan India
+                device:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      example: a577f69031845c8cb
+                    token:
+                      type: string
+                      example: >-
+                        f6903eJk2rjmCQ1WeVMwRz-VK5v:APA91bGcmDCPuC98jFmskqaH5GEqbacTFYFgjxtHTvy_s3SUzorE1845c8cb
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+  /auth/login:
+    post:
+      summary: Login
+      operationId: login
+      tags:
+        - auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - role
+                - password
+              properties:
+                role:
+                  type: string
+                  example: trainer
+                email:
+                  type: string
+                  example: raviroshanmehta@gmail.com
+                password:
+                  type: string
+                  example: '123456'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '500':
+          description: Server Error
+  /auth/social-login:
+    post:
+      summary: Social Login
+      operationId: slogin
+      tags:
+        - auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+                - social
+                - role
+              properties:
+                email:
+                  type: string
+                  example: raviroshanmehta@apple.com
+                role:
+                  type: string
+                  example: user
+                social:
+                  type: object
+                  properties:
+                    type:
+                      type: string
+                      example: apple
+                    token:
+                      type: string
+                      example: apple123
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+  /auth/logout:
+    get:
+      summary: Logout
+      operationId: logout
+      tags:
+        - auth
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+  /auth/forgot-password/{email}:
+    get:
+      summary: Forgot Password
+      operationId: fpass
+      tags:
+        - auth
+      parameters:
+        - in: path
+          name: email
+          schema:
+            type: string
+          required: true
+          description: Email ID of the user
+          example: raviroshanmehta@gmail.com
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+  /categories:
+    get:
+      summary: Get all categories listing for tranier
+      operationId: categorieslisting
+      tags:
+        - trainers
+        - categories
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+  /goals:
+    get:
+      summary: Get all goals listing for user
+      operationId: goalslisting
+      tags:
+        - users
+        - goals
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '500':
+          description: Server Error
+  /trainers:
+    get:
+      summary: Get all trainers listing
+      operationId: trainerslisting
+      tags:
+        - trainers
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: query
+          name: filterType
+          schema:
+            type: string
+            enum:
+              - categoryId
+              - name
+          required: false
+          description: filter type
+        - in: query
+          name: filterValue
+          schema:
+            type: string
+          required: false
+          description: filter value
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+  /trainers/dashboard:
+    get:
+      summary: Get dashboard summary of logged in trainer
+      operationId: trainersdashboard
+      tags:
+        - trainers
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '200':
+          description: OK
+        '401':
+          description: Unauthorized
+        '500':
+          description: Server Error
+  /trainers/my-transactions:
+    get:
+      summary: get logged in trainer all transactions
+      operationId: mytransactions
+      tags:
+        - trainers
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+  /trainers/{_id}:
+    get:
+      summary: Get trainer info
+      operationId: trainersinfo
+      tags:
+        - trainers
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: _id
+          schema:
+            type: string
+          required: true
+          description: id of the trainer
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+    put:
+      summary: Update trainer profile
+      operationId: trainerupdate
+      tags:
+        - trainers
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: _id
+          schema:
+            type: string
+          required: true
+          description: id of the trainer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Trainer'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+  /trainers/avaibilities:
+    get:
+      summary: get logged in trainier avaibilities data
+      operationId: avaibilitiesget
+      tags:
+        - trainers
+        - avaibilities
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '200':
+          description: OK
+        '500':
+          description: Server Error
+    post:
+      summary: set logged in trainier avaibilities data
+      operationId: avaibilitiespost
+      tags:
+        - trainers
+        - avaibilities
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - date
+                - slots
+              properties:
+                date:
+                  type: string
+                  example: '2021-06-24'
+                slots:
+                  type: array
+                  items:
+                    type: string
+                  example:
+                    - '10:00 AM'
+                    - '02:00 PM'
+                    - '05:00 PM'
+                    - '08:00 PM'
+      responses:
+        '201':
+          description: Created
+        '500':
+          description: Server Error
+  /trainers/date-slots/{start}/{end}:
+    get:
+      summary: get slots range between to time to set avaibility
+      operationId: dateslots
+      tags:
+        - trainers
+        - avaibilities
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: start
+          schema:
+            type: string
+            example: '9:00'
+          required: true
+          description: start time in 24 Hr formate
+        - in: path
+          name: end
+          schema:
+            type: string
+            example: '20:00'
+          required: true
+          description: end time in 24 Hr formate
+      responses:
+        '200':
+          description: OK
+        '500':
+          description: Server Error
+  /users:
+    get:
+      summary: Get all users listing
+      operationId: userslisting
+      tags:
+        - users
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+  /users/trainer-profile/{_id}:
+    get:
+      summary: Get trainer profile info
+      operationId: trainerprofileinfo
+      tags:
+        - users
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: _id
+          schema:
+            type: string
+          required: true
+          description: id of the trainer
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+  /users/{_id}:
+    get:
+      summary: Get user info
+      operationId: usersinfo
+      tags:
+        - users
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: _id
+          schema:
+            type: string
+          required: true
+          description: id of the user
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+    put:
+      summary: Update user profile
+      operationId: usersupdate
+      tags:
+        - users
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: _id
+          schema:
+            type: string
+          required: true
+          description: id of the user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+  /users/queries:
+    get:
+      summary: Get Queries List
+      operationId: getallqueries
+      tags:
+        - users
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+    post:
+      summary: Create query
+      operationId: createquery
+      tags:
+        - users
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - category
+                - subCategory
+                - query
+              properties:
+                category:
+                  type: string
+                  example: 60dc05e5c470c820fef93872
+                  description: Eneter Category Id
+                subCategory:
+                  type: string
+                  example: 60dc05e5c470c820fef93873
+                  description: Enter SubCategory Id
+                query:
+                  type: string
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+  /users/queries/{_id}:
+    get:
+      summary: Get query info
+      operationId: getquerydetail
+      tags:
+        - users
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: _id
+          schema:
+            type: string
+          required: true
+          description: id of the query
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+  /users/create-booking:
+    post:
+      summary: Create Booking
+      operationId: createbooking
+      tags:
+        - users
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - trainer
+                - date
+                - slot
+                - reminder
+              properties:
+                trainer:
+                  type: string
+                  example: 60c6fb4dde8a9b415108e539
+                  description: Eneter trainer Id
+                date:
+                  type: string
+                  example: '2021-07-01'
+                  description: Enter Date of booking
+                slots:
+                  type: array
+                  items:
+                    type: string
+                  example:
+                    - '10:00 AM'
+                    - '02:00 PM'
+                    - '05:00 PM'
+                    - '08:00 PM'
+                reminder:
+                  type: string
+                  example: 1625047310
+                  description: ''
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+  /users/confirm-booking/{_id}/{paymentToken}:
+    get:
+      summary: Confirm Booking
+      operationId: confirmbooking
+      tags:
+        - users
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: _id
+          schema:
+            type: string
+          required: true
+          example: 60e2ad97f29f6c2b254f12f5
+          description: id of the create booking
+        - in: path
+          name: paymentToken
+          schema:
+            type: string
+          required: true
+          description: Payment Token
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+  /users/buy-course/{course}/{paymentToken}:
+    get:
+      summary: Buy Course
+      operationId: buyCourse
+      tags:
+        - users
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: course
+          schema:
+            type: string
+          required: true
+          example: 60e2ad97f29f6c2b254f12f5
+          description: id of the course
+        - in: path
+          name: paymentToken
+          schema:
+            type: string
+          required: true
+          description: Payment Token
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+  /users/favourite:
+    get:
+      summary: get favourite trainers listing 
+      operationId: trainerfavourites
+      tags:
+        - users
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+  /users/favourite/{_id}:
+    get:
+      summary: add/remove trainer profile as favourite
+      operationId: trainerfavourite
+      tags:
+        - users
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: _id
+          schema:
+            type: string
+          required: true
+          description: id of the trainer
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+  /users/my-bookings:
+    get:
+      summary: get logged in user all bookings
+      operationId: mybookings
+      tags:
+        - users
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+  /users/my-orders:
+    get:
+      summary: get logged in user all courses
+      operationId: myorders
+      tags:
+        - users
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+  /lessons:
+    get:
+      summary: Get all lessons listing for logged in trainer
+      operationId: lessonslisting
+      tags:
+        - trainers
+        - lessons
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '500':
+          description: Server Error
+    post:
+      summary: create new lesson
+      operationId: lessonscreate
+      tags:
+        - trainers
+        - lessons
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Lesson'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+  /lessons/{_id}:
+    get:
+      summary: Get lesson info
+      operationId: lessonsinfo
+      tags:
+        - trainers
+        - lessons
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: _id
+          schema:
+            type: string
+          required: true
+          description: id of the lesson
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+    put:
+      summary: Update lesson
+      operationId: lessonsupdate
+      tags:
+        - trainers
+        - lessons
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: _id
+          schema:
+            type: string
+          required: true
+          description: id of the lesson
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Lesson'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+    delete:
+      summary: Remove lesson
+      operationId: lessonsremove
+      tags:
+        - trainers
+        - lessons
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: _id
+          schema:
+            type: string
+          required: true
+          description: id of the lesson
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+  /courses:
+    get:
+      summary: Get all courses listing for logged in trainer
+      operationId: courseslisting
+      tags:
+        - trainers
+        - courses
+      security:
+        - ApiKeyAuth: []
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '500':
+          description: Server Error
+    post:
+      summary: create new course
+      operationId: coursescreate
+      tags:
+        - trainers
+        - courses
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Course'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+  /courses/{_id}:
+    get:
+      summary: Get course info
+      operationId: coursesinfo
+      tags:
+        - trainers
+        - courses
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: _id
+          schema:
+            type: string
+          required: true
+          description: id of the course
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+    put:
+      summary: Update course
+      operationId: coursesupdate
+      tags:
+        - trainers
+        - courses
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: _id
+          schema:
+            type: string
+          required: true
+          description: id of the course
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Course'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+    delete:
+      summary: Remove course
+      operationId: coursesremove
+      tags:
+        - trainers
+        - courses
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: _id
+          schema:
+            type: string
+          required: true
+          description: id of the course
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+  /reviews/{onModel}/{_id}:
+    get:
+      summary: Get all reviews
+      operationId: reviews
+      tags:
+        - reviews
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: onModel
+          schema:
+            type: string
+            enum: ["Course","User"]
+          required: true
+          description: type of reviews needed
+        - in: path
+          name: _id
+          schema:
+            type: string
+          required: true
+          description: id of entity
+          example: 60bf7d265ca06dd042f2a64a
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+  /reviews:
+    post:
+      summary: add a review
+      operationId: addReview
+      tags:
+        - reviews
+      security:
+        - ApiKeyAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Review'
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+  /reviews/{_id}:  
+    put:
+      summary: Update review
+      operationId: reviewupdate
+      tags:
+        - reviews
+      security:
+        - ApiKeyAuth: []
+      parameters:
+        - in: path
+          name: _id
+          schema:
+            type: string
+          required: true
+          description: id of the review
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Review'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Bad Request
+        '409':
+          description: Conflict
+        '500':
+          description: Server Error
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+  schemas:
+    Review:
+      type: object
+      required:
+        - onModel
+        - to
+        - review
+        - rating
+      properties:
+        onModel:
+          type: string
+          enum:
+            - User
+            - Course
+          description: User,Course
+          example: Course
+        to:
+          type: string
+          description: id of the entity to add new review
+          example: 60bf7d265ca06dd042f2a64a
+        rating:
+          type: number
+          description: stars rating
+          example: 4.9
+        review:
+          type: string
+          description: review 
+          example: Excellent trainer. I extremely recommend her for live sessions
+    Lesson:
+      properties:
+        name:
+          type: string
+          example: Get active & boost stamina
+        description:
+          type: string
+          example: >-
+            Hey! My name is Ravi Roshan and it is my ultimate goal to help
+            senior people gain vital strength through my services. Lorem Epsom
+            donor sent amet constrectuar.
+        time:
+          type: integer
+          example: 540
+        src:
+          type: string
+          example: development/trainers/lessons/Lesson_1.mp4
+    Course:
+      properties:
+        name:
+          type: string
+          example: Powerfull Ballroom
+        description:
+          type: string
+          example: >-
+            Hey! My name is Ravi Roshan and it is my ultimate goal to help
+            senior people gain vital strength through my services. Lorem Epsom
+            donor sent amet constrectuar.
+        price:
+          type: number
+          example: 100
+        specialties:
+          type: array
+          items:
+            type: string
+          example:
+            - Get active & boost stamina
+            - Gain Flexibility
+        lessons:
+          type: array
+          items:
+            type: string
+          example:
+            - 60bf7d265ca06dd042f2a64a
+            - 60bf7d265ca06dd042f2a64b
+    User:
+      properties:
+        name:
+          type: string
+          example: Ravi Roshan
+        password:
+          type: string
+          example: '1234567'
+        gender:
+          type: string
+          example: male
+        dob:
+          type: number
+          example: 1623152805000
+        profileImage:
+          type: string
+          example: default.png
+        bgImage:
+          type: string
+          example: default.png
+        address:
+          type: string
+          example: Jaipur, Rajasthan India
+        location:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - Point
+                - Polygon
+              example: Point
+            coordinates:
+              type: array
+              items:
+                type: integer
+                format: int64
+              example:
+                - -104.9903
+                - 39.7392
+        goals:
+          type: array
+          items:
+            type: string
+          example:
+            - 60bf7d265ca06dd042f2a64a
+            - 60bf7d265ca06dd042f2a64d
+        height:
+          type: string
+          example: 5'6
+        weight:
+          type: number
+          example: 124
+    Trainer:
+      properties:
+        name:
+          type: string
+          example: Ravi Roshan
+        password:
+          type: string
+          example: '1234567'
+        gender:
+          type: string
+          example: male
+        dob:
+          type: number
+          example: 1623152805000
+        profileImage:
+          type: string
+          example: default.png
+        bgImage:
+          type: string
+          example: default.png
+        address:
+          type: string
+          example: Jaipur, Rajasthan India
+        location:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - Point
+                - Polygon
+              example: Point
+            coordinates:
+              type: array
+              items:
+                type: integer
+                format: int64
+              example:
+                - -104.9903
+                - 39.7392
+        categories:
+          type: array
+          items:
+            type: string
+          example:
+            - 60bf7d375ca06dd042f2a656
+            - 60bf7d375ca06dd042f2a657
+        description:
+          type: string
+          example: >-
+            Hey! My name is Ravi Roshan and it is my ultimate goal to help
+            senior people gain vital strength through my services. Lorem Epsom
+            donor sent amet constrectuar.
+        speciality:
+          type: array
+          items:
+            type: string
+          example:
+            - Learn Ballroom Dance
+            - Soulful Zumba
+        hourlyRate:
+          type: number
+          example: 10
+        experienceYear:
+          type: number
+          example: 5
+        documents:
+          type: object
+          properties:
+            certificate:
+              type: string
+              example: development/trainers/documents/Certificate.pdf
+            address:
+              type: string
+              example: development/trainers/documents/Address_Proof.pdf
+            identity:
+              type: string
+              example: development/trainers/documents/ID.pdf
