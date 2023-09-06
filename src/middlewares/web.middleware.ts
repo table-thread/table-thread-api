@@ -1,8 +1,8 @@
 import { plainToClass } from 'class-transformer';
 import { validate, ValidationError } from 'class-validator';
 import { RequestHandler } from 'express';
-import HttpException from '@exceptions/HttpException';
-import { DataStoredInToken, RequestWithUser } from "@interfaces/auth.interface";
+import HttpException from 'exceptions/HttpException';
+import { DataStoredInToken, RequestWithUser } from "interfaces/auth.interface";
 
 
 const webValidation = (
