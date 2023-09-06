@@ -1,15 +1,9 @@
 import { NextFunction, Request, Response } from "express";
 import config from "config";
-import bcrypt from "bcryptjs";
-import { CreateUserDto } from "@dtos/users.dto";
-import authService from "@services/auth.service";
-import { isEmpty } from "@utils/util";
-import { RequestWithUser } from "@interfaces/auth.interface";
-import MSG from "@utils/web.locale.en.json";
-import Helper from "@/utils/helper";
+import { RequestWithUser } from "../../interfaces/auth.interface";
+import MSG from "../../utils/web.locale.en.json";
 
 class IndexController {
-	public authService = new authService();
 
 	public index = async (req: Request, res: Response, next: NextFunction) => {
 		try {
