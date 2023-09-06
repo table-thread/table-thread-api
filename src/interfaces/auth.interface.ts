@@ -1,5 +1,5 @@
 import { Request } from "express";
-import { User } from "@interfaces/users.interface";
+// import { User } from "@interfaces/users.interface";
 
 export interface DataStoredInToken {
 	_id: string;
@@ -11,7 +11,7 @@ export interface TokenData {
 }
 
 export interface RequestWithUser extends Request {
-	user: User;
+	// user: User;
 	flash: any;
 	fileName: string;
 }
