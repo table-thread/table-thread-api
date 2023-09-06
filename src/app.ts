@@ -10,10 +10,10 @@ import hpp from "hpp";
 import path from "path";
 import morgan from "morgan";
 import { connect, set } from "mongoose";
-import { dbConnection } from "@databases";
-import Routes from "@interfaces/routes.interface";
-import errorMiddleware from "@middlewares/error.middleware";
-import { logger, stream } from "@utils/logger";
+import { dbConnection } from "./databases";
+import Routes from "./interfaces/routes.interface";
+import errorMiddleware from "./middlewares/error.middleware";
+import { logger, stream } from "./utils/logger";
 import session from "cookie-session";
 import flash  from "express-flash";
 
