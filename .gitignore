@@ -1,0 +1,13 @@
+.env
+.idea/
+.vscode/
+node_modules/
+build/
+tmp/
+dist/
+*.log
+*.lock
+src/logs/debug/*
+src/logs/error/*
+package-lock.json
+/package-lock.json
