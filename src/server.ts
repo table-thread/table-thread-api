@@ -1,7 +1,7 @@
 process.env["NODE_CONFIG_DIR"] = __dirname + "/configs";
 
 import "dotenv/config";
-import App from "@/app";
+import App from "./app";
 
 //api routes
 import AuthRoute from "@routes/auth.route";
