@@ -8,9 +8,6 @@ import AuthRoute from "./routes/auth.route";
 import IndexRoute from "./routes/index.route";
 import AjaxRoute from "./routes/ajax.route";
 
-//web routes
-import WebIndexRoute from "./routes/web/index.route";
-
 
 import validateEnv from "./utils/validateEnv";
 validateEnv();
@@ -20,10 +17,6 @@ const app = new App([
 	new AuthRoute(),
 	new IndexRoute(),
 	new AjaxRoute(),
-
-	//web routes
-	new WebIndexRoute(),
-
 ]);
 
 app.listen();

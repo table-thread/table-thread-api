@@ -24,8 +24,6 @@ class OtpsController {
 			);
 			if (!findOneOtpData) throw new HttpException(409, MSG.OTP_EXPIRED);
 
-			// const findOneUserData: User =
-			// 	await this.userService.findUserByMobile(findOneOtpData.mobile);
 
 			res.status(200).json({
 				data: "",
