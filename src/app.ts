@@ -89,8 +89,8 @@ class App {
 		this.app.use(flash());
 		
         // view engine setup
-		this.app.set("views", path.join(__dirname, "views"));
-		this.app.set("view engine", "ejs");
+		// this.app.set("views", path.join(__dirname, "views"));
+		// this.app.set("view engine", "ejs");
 	}
 
     private initializeRoutes(routes: Routes[]) {
